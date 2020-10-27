@@ -1,12 +1,15 @@
-// Page user interaction
-
+// ----------------------
+// GLOBAL VARIABLES
+// ----------------------
 let fileInput = document.querySelector("#file-selector");
 let fileList = document.querySelector("#file-list");
 let archiveForm = document.querySelector("#files-form");
 let archiveButton = document.querySelector("#archive-button");
 let archiveURL = 'http://127.0.0.1:5000/archive/';
 
-// Event listeners
+// ----------------------
+// EVENT LISTENERS
+// ----------------------
 fileInput.addEventListener('change', evt => {
 
     fileList.innerHTML = "";
@@ -21,10 +24,39 @@ fileInput.addEventListener('change', evt => {
 });
 
 archiveButton.addEventListener('click', () => {
-    fetch(archiveURL, {
+    postForm(archiveURL);
+});
+
+// ----------------------
+// FETCH FUNCTIONS
+// ----------------------
+function postForm(url) {
+    return fetch(url, {
         method: 'POST',
         body: new FormData(archiveForm)
-    }).then(response => {
-        console.log(response);
-    });
-});
+    })
+        .then(checkStatus)
+        .then(res => res.json())
+        .then(processArchiveResponse)
+        .catch(error => console.log('Looks like there was a problem', error));
+}
+
+// ----------------------
+// HELPER FUNCTIONS
+// ----------------------
+function checkStatus(response) {
+    if (response.ok) {
+        return Promise.resolve(response);
+    } else {
+        return Promise.reject(new Error(response.statusText));
+    }
+}
+
+function processArchiveResponse(fingerprintData) {
+    let files = Object.keys(fingerprintData);
+    files.forEach(file => {
+        fingerprintData[file].forEach(fingerprint => {
+            console.log(fingerprint);
+        });
+    })
+}

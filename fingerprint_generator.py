@@ -29,4 +29,4 @@ def archive_file(file_path, log, index, compress=False, block_size=4096):
 def get_fingerprint(block):
     digestor = sha1()
     digestor.update(block)
-    return digestor.digest()
+    return digestor.hexdigest()
