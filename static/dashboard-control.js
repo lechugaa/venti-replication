@@ -32,7 +32,7 @@ let chart = new Chart(ctx, {
             yAxes: [{
                 scaleLabel: {
                      display: true,
-                     labelString: 'Size (kB)',
+                     labelString: 'Size (KB)',
                      fontSize: 15
                   }
             }],
@@ -44,5 +44,6 @@ let chart = new Chart(ctx, {
                   }
             }]
         },
-    }
+    },
+    maintainAspectRatio: false
 });

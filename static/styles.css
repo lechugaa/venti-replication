@@ -87,10 +87,6 @@ footer p {
     border-left: solid 1px var(--color-primary);
 }
 
-#dashboard-container {
-    border-top: 0;
-}
-
 #controls-container {
     overflow: scroll;
 }
@@ -100,12 +96,11 @@ footer p {
 }
 
 #statistics-list {
-    margin: 1rem 1rem 0;
+    margin: 1rem 1rem;
 }
 
 #statistics-list li {
     font-weight: bold;
-    margin-bottom: 10px;
 }
 
 .pill {
@@ -120,4 +115,5 @@ footer p {
 
 .canvas-wrapper {
     width: 90%;
+    margin-left: 1.5rem;
 }

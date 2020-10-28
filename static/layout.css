@@ -1,14 +1,19 @@
 /* ----- Grid layout -----*/
+:root {
+	--block-height: 500px;
+}
+
+
 .container {
-    height: 100vh;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 80px minmax(150px, 50%) minmax(150px, 50%) 80px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 80px var(--block-height) var(--block-height) var(--block-height) 80px;
     grid-template-areas:
-    "header header header"
-    "control files changes"
-    "dashboard index log"
-    "footer footer footer";
+    "header header"
+    "control dashboard"
+    "files changes"
+    "index log"
+    "footer footer";
   }
 
 header {
@@ -63,5 +68,17 @@ footer {
 #dashboard-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+}
+
+#statistics-list {
+    display: flex;
+    flex-direction: row;
     justify-content: space-around;
+}
+
+#controls-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
