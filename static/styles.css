@@ -87,10 +87,6 @@ footer p {
     border-left: solid 1px var(--color-primary);
 }
 
-#controls-container {
-    overflow: scroll;
-}
-
 .cell form {
     margin: 1rem 1rem 0;
 }
@@ -115,5 +111,5 @@ footer p {
 
 .canvas-wrapper {
     width: 90%;
-    margin-left: 1.5rem;
+    max-width: 950px;
 }
