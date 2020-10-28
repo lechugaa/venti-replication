@@ -1,0 +1,67 @@
+/* ----- Grid layout -----*/
+.container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 80px minmax(150px, 50%) minmax(150px, 50%) 80px;
+    grid-template-areas:
+    "header header header"
+    "control files changes"
+    "dashboard index log"
+    "footer footer footer";
+  }
+
+header {
+    grid-area: header;
+}
+
+#controls-container {
+    grid-area: control;
+}
+
+#files-container {
+    grid-area: files;
+}
+
+#changes-container {
+    grid-area: changes;
+}
+
+#index-container {
+    grid-area: index;
+}
+
+#log-container {
+    grid-area: log;
+}
+
+#dashboard-container {
+    grid-area: dashboard;
+}
+
+footer {
+    grid-area: footer;
+}
+
+/* ----- Flexbox layout -----*/
+.cell {
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.block-list li {
+    display: flex;
+    align-items: center;
+}
+
+#dashboard-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}

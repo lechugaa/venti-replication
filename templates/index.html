@@ -3,13 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <title>Venti Visualization</title>
+    <link rel="icon" type="image/hpg" href="../static/itam.jpg">
+    <link rel="stylesheet" href="../static/normalize.css">
+    <link rel="stylesheet" href="../static/layout.css">
+    <link rel="stylesheet" href="../static/styles.css">
 </head>
-<body>
-<form id="files-form">
-    <input type="file" id="file-selector" name="uploaded_files"  webkitdirectory multiple>
-</form>
-<ul id="file-list"></ul>
-<button id="archive-button">Archive</button>
+<body class="container">
+
+<!-- header -->
+<header>
+    <h1>Venti: a new approach to archival storage</h1>
+</header>
+<!--/ header -->
+
+<!-- input form -->
+<div id="controls-container" class="cell">
+    <h2>Controls</h2>
+    <form action='/archive/' method="post" enctype="multipart/form-data">
+        <fieldset>
+            <p class="fieldset-title">Directory or file selection</p>
+            <input type="file" id="file-selector" name="uploaded_files" webkitdirectory multiple>
+        </fieldset>
+        <fieldset>
+            <p class="fieldset-title">Block compression</p>
+            <input type="checkbox" id="compression-checkbox" name="enable_compression">
+            <label for="compression-checkbox">Enable block compression</label>
+        </fieldset>
+        <fieldset>
+            <p class="fieldset-title">Block size</p>
+            <label for="block-size-text">Block size in KB</label>
+            <input type="text" id="block-size-text" name="block-size" placeholder="4">
+        </fieldset>
+        <br>
+        <input id="submit-files-button" type="submit" value="Archive">
+    </form>
+    <h2>Performance</h2>
+    <ul id="statistics-list">
+        <li><span class="pill">Files</span> 10</li>
+        <li><span class="pill">Block</span> 100</li>
+        <li><span class="pill">Total size</span> 100 MB</li>
+        <li><span class="pill">Log size</span> 100 MB</li>
+    </ul>
+</div>
+<!--/ input form -->
+
+<!-- files container -->
+<div id="files-container" class="cell">
+    <h2>Files</h2>
+    <ul id="files-list" class="block-list">
+        {% if files_dict %}
+            {% for key, value in files_dict.items() %}
+                <li data-content="{{ value }}">{{ key }}</li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+</div>
+<!--/ files container -->
+
+<!-- changes container -->
+<div id="changes-container" class="cell">
+    <h2>Changes</h2>
+    <ul id="changes-list" class="block-list">
+        {% if changes %}
+            {% for change in changes %}
+                {% if change[2] %}
+                    <li class="new-block" data-content="{{ change[1] }}">{{ change[0] }}</li>
+                {% else %}
+                    <li class="old-block" data-content="{{ change[1] }}">{{ change[0] }}</li>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </ul>
+</div>
+<!--/ changes container -->
+
+<!-- index container -->
+<div id="index-container" class="cell">
+    <h2>Index</h2>
+    <ul id="index-list" class="block-list">
+        {% if index %}
+            {% for key, value in index.items() %}
+                <li data-content="{{ value }}">{{ key }}</li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+</div>
+<!--/ index container -->
+
+<!-- log container -->
+<div id="log-container" class="cell">
+    <h2>Log</h2>
+    <ul id="log-list" class="block-list">
+        {% if log %}
+            {% for entry in log %}
+                <li data-content="{{ entry }}">{{ loop.index0 }}</li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+</div>
+<!--/ log container -->
+
+<!-- dashboard container -->
+<div id="dashboard-container" class="cell">
+    <div class="canvas-wrapper">
+        <canvas id="performance-chart"></canvas>
+    </div>
+</div>
+<!--/ dashboard container -->
+
+<!-- footer -->
+<footer>
+    <p>Antonio Lechuga – 2020</p>
+</footer>
+<!--/ footer -->
 </body>
-<script src="../static/additions.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script type="text/javascript" src="../static/dashboard-control.js"></script>
+<script type="text/javascript" src="../static/additions.js"></script>
 </html>
