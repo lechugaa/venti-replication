@@ -4,6 +4,8 @@
 let fileInput = document.querySelector("#file-selector");
 let submitFilesBtn = document.querySelector("#submit-files-button");
 let blockLists = document.querySelectorAll(".block-list");
+let modalBody = document.querySelector(".modal-body");
+let modalTitle = document.querySelector(".modal-title");
 
 // ----------------------
 // EVENT LISTENERS
@@ -17,7 +19,11 @@ submitFilesBtn.addEventListener('click', evt => {
 blockLists.forEach(blockList => {
     blockList.addEventListener('click', evt => {
         if (evt.target.tagName === 'LI') {
-            console.log(evt.target.getAttribute('data-content'));
+            let title = evt.target.textContent;
+            let content = evt.target.getAttribute('data-content');
+            modalTitle.textContent = title;
+            modalBody.textContent = content;
+            $('#main-modal').modal('show');
         }
     });
 });

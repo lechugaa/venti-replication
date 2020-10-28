@@ -7,7 +7,7 @@ let chart = new Chart(ctx, {
     data: {
         labels: ['1', '2', '3', '4', '5', '6', '7'],
         datasets: [{
-            label: 'Files size',
+            label: 'Total size',
             pointBackgroundColor: 'rgb(47, 57, 68)',
             pointRadius: 4,
             pointBorderColor: 'rgb(47, 57, 68)',
@@ -16,7 +16,7 @@ let chart = new Chart(ctx, {
             data: [0, 10, 5, 2, 20, 30, 45]
         },
         {
-            label: 'Log size',
+            label: 'Real size',
             pointBackgroundColor: 'rgb(255, 99, 71)',
             pointRadius: 4,
             pointBorderColor: 'rgb(255, 99, 71)',

@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="../static/layout.css">
     <link rel="stylesheet" href="../static/styles.css">
 </head>
-<body class="container">
-
+<body class="main-container">
 <!-- header -->
 <header>
     <h1>Venti: a new approach to archival storage</h1>
@@ -35,13 +34,13 @@
             <input type="text" id="block-size-text" name="block-size" placeholder="4">
         </fieldset>
         <br>
-        <input id="submit-files-button" type="submit" value="Archive">
+        <input id="submit-files-button" class="btn btn-dark" type="submit" value="Archive">
     </form>
         <ul id="statistics-list">
-        <li><span class="pill">Files</span> 10</li>
-        <li><span class="pill">Block</span> 100</li>
-        <li><span class="pill">Total size</span> 100 MB</li>
-        <li><span class="pill">Log size</span> 100 MB</li>
+        <li><span class="pill">Files</span> {{ files_dict|length }}</li>
+        <li><span class="pill">Block</span> {{ log|length }}</li>
+        <li><span class="pill">Total size</span> {{ total_size }} MB</li>
+        <li><span class="pill">Real size</span> {{ real_size }} MB</li>
     </ul>
 </div>
 <!--/ input form -->
@@ -115,6 +114,23 @@
     <p>Antonio Lechuga – 2020</p>
 </footer>
 <!--/ footer -->
+
+<!-- Modal -->
+<div class="modal fade" id="main-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>
+<!--/ Modal -->
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
