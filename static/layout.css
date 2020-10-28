@@ -1,20 +1,22 @@
 /* ----- Grid layout -----*/
 :root {
-	--block-height: 500px;
+    --block-height: 500px;
 }
-
 
 .container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 80px var(--block-height) var(--block-height) var(--block-height) 80px;
+    grid-template-rows: 120px var(--block-height) var(--block-height) var(--block-height) var(--block-height) var(--block-height) var(--block-height) 80px;
+    grid-template-columns: 100%;
     grid-template-areas:
-    "header header"
-    "control dashboard"
-    "files changes"
-    "index log"
-    "footer footer";
-  }
+    "header"
+    "control"
+    "dashboard"
+    "files"
+    "changes"
+    "index"
+    "log"
+    "footer";
+}
 
 header {
     grid-area: header;
@@ -48,6 +50,19 @@ footer {
     grid-area: footer;
 }
 
+@media (min-width: 768px) {
+    .container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 80px var(--block-height) var(--block-height) var(--block-height) 80px;
+        grid-template-areas:
+    "header header"
+    "control dashboard"
+    "files changes"
+    "index log"
+    "footer footer";
+    }
+}
+
 /* ----- Flexbox layout -----*/
 .cell {
     display: flex;
@@ -76,6 +91,7 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 #controls-container {

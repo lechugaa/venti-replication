@@ -97,6 +97,7 @@ footer p {
 
 #statistics-list li {
     font-weight: bold;
+    margin-bottom: 1rem;
 }
 
 .pill {
