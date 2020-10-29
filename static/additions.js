@@ -29,20 +29,8 @@ blockLists.forEach(blockList => {
 });
 
 // ----------------------
-// FETCH FUNCTIONS
-// ----------------------
-
-// ----------------------
 // HELPER FUNCTIONS
 // ----------------------
 function noFilesSelected() {
     return fileInput.files.length <= 0;
-}
-
-function checkStatus(response) {
-    if (response.ok) {
-        return Promise.resolve(response);
-    } else {
-        return Promise.reject(new Error(response.statusText));
-    }
 }
