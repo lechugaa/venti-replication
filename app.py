@@ -1,6 +1,7 @@
 import os
+from datetime import datetime
 from flask import Flask
-from flask import jsonify, render_template, request, redirect, url_for
+from flask import jsonify, render_template, request, redirect, send_file, url_for
 from helpers import archive_file, timestamp_filename
 
 app = Flask(__name__)
@@ -9,6 +10,7 @@ venti_index = {}
 venti_log = []
 venti_files = {}
 venti_changes = []
+labels = []
 total_sizes = []
 real_sizes = []
 
@@ -16,6 +18,9 @@ real_sizes = []
 def update_sizes(total_delta, real_delta):
     total_size = total_sizes[-1] if len(total_sizes) > 0 else 0
     real_size = real_sizes[-1] if len(real_sizes) > 0 else 0
+    label = f"{datetime.now().strftime('%H:%M:%S')}"
+
+    labels.append(label)
     total_sizes.append(total_size + total_delta)
     real_sizes.append(real_size + real_delta)
 
@@ -79,8 +84,19 @@ def delete_log():
 
 @app.route('/historical_data/', methods=['GET'])
 def get_historical_data():
-    labels = [f"{i + 1}" for i in range(len(total_sizes))]
     return jsonify([labels, total_sizes, real_sizes])
+
+
+@app.route('/download_block/<block_id>/', methods=['GET'])
+def download_block(block_id):
+    log_index = int(block_id)
+
+    file_path = f"./temporal_files/block-file.txt"
+    f = open(file_path, "wb")
+    f.write(venti_log[log_index])
+    f.close()
+
+    return send_file(file_path, as_attachment=True)
 
 
 if __name__ == '__main__':

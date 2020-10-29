@@ -19,33 +19,36 @@ let chart = new Chart(ctx, {
             data: [],
             lineTension: 0
         },
-        {
-            label: 'Real size',
-            pointBackgroundColor: 'rgb(255, 99, 71)',
-            pointRadius: 4,
-            pointBorderColor: 'rgb(255, 99, 71)',
-            backgroundColor: 'rgba(255, 99, 71, 0)',
-            borderColor: 'rgb(255, 99, 71)',
-            data: [],
-            lineTension: 0
-        }]
+            {
+                label: 'Real size',
+                pointBackgroundColor: 'rgb(255, 99, 71)',
+                pointRadius: 4,
+                pointBorderColor: 'rgb(255, 99, 71)',
+                backgroundColor: 'rgba(255, 99, 71, 0)',
+                borderColor: 'rgb(255, 99, 71)',
+                data: [],
+                lineTension: 0
+            }]
     },
 
     options: {
         scales: {
             yAxes: [{
                 scaleLabel: {
-                     display: true,
-                     labelString: 'Size (KB)',
-                     fontSize: 15
-                  }
+                    display: true,
+                    labelString: 'Size (KB)',
+                    fontSize: 15
+                },
+                ticks: {
+                    suggestedMin: 0,
+                },
             }],
             xAxes: [{
                 scaleLabel: {
-                     display: true,
-                     labelString: 'Backup',
-                     fontSize: 15
-                  }
+                    display: true,
+                    labelString: 'Backup',
+                    fontSize: 15
+                }
             }]
         },
     },
