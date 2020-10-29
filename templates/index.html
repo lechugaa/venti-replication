@@ -31,16 +31,17 @@
         <fieldset>
             <p class="fieldset-title">Block size</p>
             <label for="block-size-text">Block size in KB</label>
-            <input type="text" id="block-size-text" name="block-size" placeholder="4">
+            <input type="text" id="block-size-text" name="block_size" placeholder="4">
         </fieldset>
         <br>
         <input id="submit-files-button" class="btn btn-dark" type="submit" value="Archive">
+        <a class="btn btn-danger" href="/delete_log/">Delete log</a>
     </form>
         <ul id="statistics-list">
         <li><span class="pill">Files</span> {{ files_dict|length }}</li>
         <li><span class="pill">Block</span> {{ log|length }}</li>
-        <li><span class="pill">Total size</span> {{ total_size }} MB</li>
-        <li><span class="pill">Real size</span> {{ real_size }} MB</li>
+        <li><span class="pill">Total size</span> {{ "%.3f"|format(total_size) }} KB</li>
+        <li><span class="pill">Real size</span> {{ "%.3f"|format(real_size) }} KB</li>
     </ul>
 </div>
 <!--/ input form -->
