@@ -29,4 +29,4 @@ To execute the tool run the following command:
 python app.py
 ```
 
-and visit enter the address  http://127.0.0.1:5000/ on a web browser (Chrome, Safari or Firefox for full capabilities).
+and visit http://127.0.0.1:5000/ on a  modern web browser (Chrome, Safari or Firefox for full capabilities).
