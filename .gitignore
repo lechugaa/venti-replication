@@ -1,2 +1,3 @@
 # Project exclude paths
 /venv/
+/temporal_files/block-file.txt
