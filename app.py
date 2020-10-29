@@ -1,7 +1,7 @@
 import os
 from flask import Flask
 from flask import jsonify, render_template, request, redirect, url_for
-from venti import archive_file
+from helpers import archive_file, timestamp_filename
 
 app = Flask(__name__)
 
@@ -45,14 +45,15 @@ def archive():
         real_delta = 0
 
         for file in files:
-            file_path = f'./temporal_files/{file.filename}'
+            filename = timestamp_filename(file.filename)
+            file_path = f'./temporal_files/{filename}'
             file.save(file_path)
             fingerprints, changes, total_i_delta, real_i_delta = archive_file(file_path=file_path,
                                                                               log=venti_log,
                                                                               index=venti_index,
                                                                               compress=compress,
                                                                               block_size=block_size)
-            venti_files[file.filename] = fingerprints
+            venti_files[filename] = fingerprints
             total_delta += total_i_delta
             real_delta += real_i_delta
             for change in changes:

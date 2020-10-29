@@ -1,3 +1,4 @@
+from datetime import datetime
 from hashlib import sha1
 import sys
 import zlib
@@ -42,3 +43,10 @@ def get_fingerprint(block):
 
 def size_in_kb(block):
     return sys.getsizeof(block) / 1024
+
+
+def timestamp_filename(filename):
+    timestamp = datetime.timestamp(datetime.now())
+    file_extension = filename.split('.').pop()
+    filename = '.'.join(filename.split('.')[:-1]) + str(timestamp) + '.' + file_extension
+    return filename
