@@ -14,11 +14,12 @@ def archive_file(file_path, log, index, compress=False, block_size=4096):
     block = f.read(block_size)
     while block:
         total_size += size_in_kb(block)
-        fingerprint = get_fingerprint(block)
-        fingerprints.append(fingerprint)
 
         if compress:
             block = zlib.compress(block)
+
+        fingerprint = get_fingerprint(block)
+        fingerprints.append(fingerprint)
 
         if fingerprint in index:
             block_changes.append((fingerprint, block, False))
