@@ -76,6 +76,7 @@ def delete_log():
     venti_log.clear()
     venti_files.clear()
     venti_changes.clear()
+    labels.clear()
     total_sizes.clear()
     real_sizes.clear()
 
